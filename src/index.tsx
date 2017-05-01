@@ -45,7 +45,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
         const {blur} = this.state;
         return {
             filter: `blur(${blur}px)`,
-            transition: "blur 500ms ease"
+            transition: "filter 500ms ease"
         };
     }
 
@@ -54,7 +54,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
         return {
             backgroundImage: `url(${src})`,
             filter: `blur(${blur}px)`,
-            transition: "blur 500ms ease"
+            transition: "filter 500ms ease"
         };
     }
 }
