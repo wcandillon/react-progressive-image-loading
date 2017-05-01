@@ -12,7 +12,8 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "strictNullChecks": true,
-        "declaration": true
+        "declaration": true,
+        "suppressImplicitAnyIndexErrors": true
     },
     "filesGlob": [
         "src/**/*.ts",

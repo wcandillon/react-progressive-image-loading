@@ -1,19 +1,24 @@
 import * as React from "react";
 
-interface ProgressiveImageProps extends React.HTMLProps<HTMLDivElement> {
+export interface ProgressiveImageProps extends React.HTMLProps<HTMLDivElement> {
     preview: string;
     src: string;
-    background?: boolean;
 }
 
-interface ProgressiveImageState {
+export interface ProgressiveBackgroundImageProps extends  React.HTMLProps<HTMLImageElement> {
+    preview: string;
+    src: string;
+    background: boolean;
+}
+
+export interface ProgressiveImageState {
     src: string;
     blur: number;
 }
 
-class ProgressiveImage extends React.Component<ProgressiveImageProps, ProgressiveImageState> {
+export class ProgressiveImage extends React.Component<ProgressiveImageProps & ProgressiveBackgroundImageProps, ProgressiveImageState> {
 
-    private clonedProps: React.HTMLProps<HTMLDivElement> = {};
+    private clonedProps: React.HTMLProps<HTMLDivElement | HTMLImageElement> = {};
 
     componentWillMount() {
         const {src, preview} = this.props;
@@ -23,7 +28,7 @@ class ProgressiveImage extends React.Component<ProgressiveImageProps, Progressiv
     }
 
     render() {
-        const {style} = this.props;
+        const {src, style, background} = this.props;
         return (
             <div>
                 <style>{`
@@ -32,7 +37,13 @@ class ProgressiveImage extends React.Component<ProgressiveImageProps, Progressiv
                     100% { -webkit-filter: blur(0); }
                 }
                 `}</style>
-                <div style={Object.assign(this.getStyle(), style)} {...this.clonedProps} />
+                {
+                    background ?
+                        <div style={Object.assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
+                    :
+                        <img src={src} style={Object.assign(this.getStyle(), style)} {...this.clonedProps} />
+                }
+
             </div>
         );
     }
@@ -44,6 +55,15 @@ class ProgressiveImage extends React.Component<ProgressiveImageProps, Progressiv
     }
 
     private getStyle() {
+        const {blur} = this.state;
+        return {
+            filter: `blur(${blur}px)`,
+            animation: "blur 400ms",
+            animationTimingFunction: "ease"
+        };
+    }
+
+    private getBackgroundStyle() {
         const {src, blur} = this.state;
         return {
             backgroundImage: `url(${src})`,
