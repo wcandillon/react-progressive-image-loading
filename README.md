@@ -2,6 +2,7 @@
 Progressively load images using a blur effect.
 
 [![CircleCI](https://circleci.com/gh/wcandillon/react-progressive-image-loading.svg?style=svg)](https://circleci.com/gh/wcandillon/react-progressive-image-loading)
+[![npm version](https://badge.fury.io/js/react-progressive-image-loading.svg)](https://badge.fury.io/js/react-progressive-image-loading)
 
 ![example](http://i.imgur.com/fL5Qqvj.gif)
 
