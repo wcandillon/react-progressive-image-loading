@@ -1,14 +1,12 @@
 import * as React from "react";
 
-export interface ProgressiveImageProps extends React.HTMLProps<HTMLDivElement> {
-    preview: string;
-    src: string;
-}
+type DivProps = React.HTMLProps<HTMLImageElement>;
+type ImageProps = React.HTMLProps<HTMLDivElement>;
 
-export interface ProgressiveBackgroundImageProps extends  React.HTMLProps<HTMLImageElement> {
+export interface ProgressiveImageProps {
     preview: string;
     src: string;
-    background: boolean;
+    background?: boolean;
 }
 
 export interface ProgressiveImageState {
@@ -16,7 +14,7 @@ export interface ProgressiveImageState {
     blur: number;
 }
 
-export class ProgressiveImage extends React.Component<ProgressiveImageProps & ProgressiveBackgroundImageProps, ProgressiveImageState> {
+export class ProgressiveImage extends React.Component<ProgressiveImageProps & DivProps & ImageProps, ProgressiveImageState> {
 
     private clonedProps: React.HTMLProps<HTMLDivElement | HTMLImageElement> = {};
 
