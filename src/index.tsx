@@ -1,3 +1,4 @@
+import {assign} from "lodash";
 import * as React from "react";
 
 export type DivProps = React.HTMLProps<HTMLImageElement>;
@@ -37,9 +38,9 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
                 `}</style>
                 {
                     background ?
-                        <div style={Object.assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
+                        <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
                     :
-                        <img src={src} style={Object.assign(this.getStyle(), style)} {...this.clonedProps} />
+                        <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
                 }
 
             </div>
