@@ -28,12 +28,11 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     render() {
         const {src, style, background} = this.props;
-        return 
-            background ?
-                <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
-            :
-                <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
-            ;
+        return background ?
+            <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
+        :
+            <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
+        ;
     }
 
     private cloneProps() {
