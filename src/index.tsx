@@ -28,23 +28,11 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     render() {
         const {src, style, background} = this.props;
-        return (
-            <div>
-                <style>{`
-                @-webkit-keyframes blur {
-                    0%  { -webkit-filter: blur(10px); }
-                    100% { -webkit-filter: blur(0); }
-                }
-                `}</style>
-                {
-                    background ?
-                        <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
-                    :
-                        <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
-                }
-
-            </div>
-        );
+        return background ?
+            <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
+        :
+            <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
+        ;
     }
 
     private cloneProps() {
@@ -57,8 +45,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
         const {blur} = this.state;
         return {
             filter: `blur(${blur}px)`,
-            animation: "blur 400ms",
-            animationTimingFunction: "ease"
+            transition: "filter 500ms ease"
         };
     }
 
@@ -67,8 +54,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
         return {
             backgroundImage: `url(${src})`,
             filter: `blur(${blur}px)`,
-            animation: "blur 400ms",
-            animationTimingFunction: "ease"
+            transition: "filter 500ms ease"
         };
     }
 }
