@@ -19,7 +19,7 @@ export interface ProgressiveImageState {
 
 export class ProgressiveImage extends React.Component<ProgressiveImageProps & DivProps & ImageProps, ProgressiveImageState> {
 
-    private clonedProps: React.HTMLProps<HTMLDivElement | HTMLImageElement> = {};
+    private clonedProps: React.HTMLProps<HTMLDivElement & HTMLImageElement> = {};
 
     static defaultProps = {
         transitionTime: 500,
@@ -30,24 +30,37 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
         const {src, preview} = this.props;
         this.setState({ src: "", blur: 10 });
         this.cloneProps();
-        fetch(preview)
-            .then(() => this.setState({ src: preview, blur: 10 }))
-            .then(() => fetch(src))
-            .then(() => this.setState({ src, blur: 0 }));
+        this.fetch(preview)
+            .then(previewDataURI => this.setState({ src: previewDataURI, blur: 10 }))
+            .then(() => this.fetch(src))
+            .then(srcDataURI => this.setState({ src: srcDataURI, blur: 0 }));
     }
-
     render() {
         const {src, style, background} = this.props;
         return background ?
             <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
-        :
+            :
             <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
-        ;
+            ;
+    }
+
+    private fetch(uri: string): Promise<string> {
+        return new Promise(resolve => {
+            fetch(uri)
+                .then(response => response.blob())
+                .then(blob => {
+                    const fp = new FileReader();
+                    fp.onload = () => {
+                        resolve(fp.result as string);
+                    };
+                    fp.readAsDataURL(blob);
+                });
+        });
     }
 
     private cloneProps() {
         Object.keys(this.props)
-            .filter(prop => ["style", "src", "preview", "background"].indexOf(prop) === -1)
+            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction"].indexOf(prop) === -1)
             .forEach(prop => this.clonedProps[prop] = this.props[prop]);
     }
 
