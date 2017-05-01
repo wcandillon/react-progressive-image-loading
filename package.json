@@ -1,0 +1,41 @@
+{
+  "name": "react-progressive-image",
+  "version": "0.0.0-development",
+  "description": "Progressively load images using a blur effect. Edit",
+  "main": "build/index.js",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc --pretty",
+    "watch": "tsc --watch --pretty",
+    "test": "npm run lint && npm run build",
+    "release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wcandillon/react-progressive-image.git"
+  },
+  "keywords": [
+    "react",
+    "image",
+    "progressive",
+    "image",
+    "loading"
+  ],
+  "author": "William Candillon",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wcandillon/react-progressive-image/issues"
+  },
+  "homepage": "https://github.com/wcandillon/react-progressive-image#readme",
+  "devDependencies": {
+    "@types/react": "^15.0.23",
+    "condition-circle": "^1.5.0",
+    "semantic-release": "^6.3.2",
+    "ts-npm-lint": "^0.1.0",
+    "tslint": "^5.1.0",
+    "typescript": "^2.3.2"
+  }
+}
