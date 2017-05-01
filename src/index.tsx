@@ -8,6 +8,8 @@ export interface ProgressiveImageProps {
     preview: string;
     src: string;
     background?: boolean;
+    transitionTime?: number;
+    timingFunction?: string;
 }
 
 export interface ProgressiveImageState {
@@ -19,11 +21,19 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     private clonedProps: React.HTMLProps<HTMLDivElement | HTMLImageElement> = {};
 
+    static defaultProps = {
+        transitionTime: 500,
+        timingFunction: "ease"
+    };
+
     componentWillMount() {
         const {src, preview} = this.props;
-        this.setState({ src: preview, blur: 10 });
+        this.setState({ src: "", blur: 10 });
         this.cloneProps();
-        fetch(src).then(() => this.setState({ src, blur: 0 }));
+        fetch(preview)
+            .then(() => this.setState({ src: preview, blur: 10 }))
+            .then(() => fetch(src))
+            .then(() => this.setState({ src, blur: 0 }));
     }
 
     render() {
@@ -42,19 +52,19 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
     }
 
     private getStyle() {
+        const {transitionTime, timingFunction} = this.props;
         const {blur} = this.state;
         return {
             filter: `blur(${blur}px)`,
-            transition: "filter 500ms ease"
+            transition: `filter ${transitionTime}ms ${timingFunction}`
         };
     }
 
     private getBackgroundStyle() {
-        const {src, blur} = this.state;
-        return {
-            backgroundImage: `url(${src})`,
-            filter: `blur(${blur}px)`,
-            transition: "filter 500ms ease"
+        const {src} = this.state;
+        const style = {
+            backgroundImage: `url(${src})`
         };
+        return assign(style, this.getStyle());
     }
 }
