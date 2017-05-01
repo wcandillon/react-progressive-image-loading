@@ -1,5 +1,5 @@
 {
-  "name": "react-progressive-image",
+  "name": "react-progressive-image-loading",
   "version": "0.0.0-development",
   "description": "Progressively load images using a blur effect. Edit",
   "main": "build/index.js",
