@@ -1,7 +1,7 @@
 import * as React from "react";
 
-type DivProps = React.HTMLProps<HTMLImageElement>;
-type ImageProps = React.HTMLProps<HTMLDivElement>;
+export type DivProps = React.HTMLProps<HTMLImageElement>;
+export type ImageProps = React.HTMLProps<HTMLDivElement>;
 
 export interface ProgressiveImageProps {
     preview: string;
