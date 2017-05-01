@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/wcandillon/react-progressive-image#readme",
   "devDependencies": {
+    "@types/lodash": "^4.14.63",
     "@types/react": "^15.0.23",
     "condition-circle": "^1.5.0",
     "semantic-release": "^6.3.2",
@@ -41,5 +42,8 @@
   },
   "release": {
     "verifyConditions": "condition-circle"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
   }
 }

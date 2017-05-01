@@ -1,14 +1,13 @@
+import {assign} from "lodash";
 import * as React from "react";
 
-export interface ProgressiveImageProps extends React.HTMLProps<HTMLDivElement> {
-    preview: string;
-    src: string;
-}
+export type DivProps = React.HTMLProps<HTMLImageElement>;
+export type ImageProps = React.HTMLProps<HTMLDivElement>;
 
-export interface ProgressiveBackgroundImageProps extends  React.HTMLProps<HTMLImageElement> {
+export interface ProgressiveImageProps {
     preview: string;
     src: string;
-    background: boolean;
+    background?: boolean;
 }
 
 export interface ProgressiveImageState {
@@ -16,7 +15,7 @@ export interface ProgressiveImageState {
     blur: number;
 }
 
-export class ProgressiveImage extends React.Component<ProgressiveImageProps & ProgressiveBackgroundImageProps, ProgressiveImageState> {
+export class ProgressiveImage extends React.Component<ProgressiveImageProps & DivProps & ImageProps, ProgressiveImageState> {
 
     private clonedProps: React.HTMLProps<HTMLDivElement | HTMLImageElement> = {};
 
@@ -39,9 +38,9 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Pr
                 `}</style>
                 {
                     background ?
-                        <div style={Object.assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
+                        <div style={assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
                     :
-                        <img src={src} style={Object.assign(this.getStyle(), style)} {...this.clonedProps} />
+                        <img src={src} style={assign(this.getStyle(), style)} {...this.clonedProps} />
                 }
 
             </div>
