@@ -3,6 +3,7 @@
   "version": "0.0.0-development",
   "description": "Progressively load images using a blur effect. Edit",
   "main": "build/index.js",
+  "typings": "build/index.d.ts",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "tsc --pretty",
