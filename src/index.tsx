@@ -33,7 +33,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
     render() {
         const {src} = this.state;
         const {children} = this.props;
-        if (!children || typeof children !== 'function') {
+        if (!children || typeof children !== "function") {
             throw new Error("ProgressiveImage requires a function as its only child");
         }
         return children(src, this.getStyle());
