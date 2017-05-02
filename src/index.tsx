@@ -43,17 +43,11 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
             ;
     }
 
-    private fetch(uri: string): Promise<string> {
+    private fetch(src: string): Promise<string> {
         return new Promise(resolve => {
-            fetch(uri)
-                .then(response => response.blob())
-                .then(blob => {
-                    const fp = new FileReader();
-                    fp.onload = () => {
-                        resolve(fp.result as string);
-                    };
-                    fp.readAsDataURL(blob);
-                });
+            const image = new Image();
+            image.src = src;
+            image.addEventListener("load", () => resolve(src), false);
         });
     }
 
