@@ -7,6 +7,7 @@ export interface ProgressiveImageProps {
     preview: string;
     src: string;
     background?: boolean;
+    backgroundImages?: string[];
     transitionTime?: number;
     timingFunction?: string;
 }
@@ -53,7 +54,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     private cloneProps() {
         Object.keys(this.props)
-            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction"].indexOf(prop) === -1)
+            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction", "backgroundImages", "children"].indexOf(prop) === -1)
             .forEach(prop => this.clonedProps[prop] = this.props[prop]);
     }
 
@@ -68,8 +69,9 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     private getBackgroundStyle() {
         const {src} = this.state;
+        const {backgroundImages} = this.props;
         const style = {
-            backgroundImage: `url(${src})`
+            backgroundImage: `${backgroundImages ? `${backgroundImages.join(",")},`: ""}url(${src})`
         };
         return Object.assign(style, this.getStyle());
     }
