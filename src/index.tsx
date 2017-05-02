@@ -28,7 +28,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
         this.fetch(preview)
             .then(previewDataURI => this.setState({ src: previewDataURI, blur: initialBlur }))
             .then(() => this.fetch(src))
-            .then(srcDataURI => this.setState({ src: srcDataURI, blur: initialBlur }));
+            .then(srcDataURI => this.setState({ src: srcDataURI, blur: 0 }));
     }
 
     render() {
