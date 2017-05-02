@@ -10,6 +10,7 @@ export interface ProgressiveImageProps {
     backgroundImages?: string[];
     transitionTime?: number;
     timingFunction?: string;
+    maxBlur?: number;
 }
 
 export interface ProgressiveImageState {
@@ -23,15 +24,16 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     static defaultProps = {
         transitionTime: 500,
-        timingFunction: "ease"
+        timingFunction: "ease",
+        maxBlur: 10
     };
 
     componentWillMount() {
-        const {src, preview} = this.props;
-        this.setState({ src: "", blur: 10 });
+        const {src, preview, maxBlur} = this.props;
+        this.setState({ src: "", blur: maxBlur as number });
         this.cloneProps();
         this.fetch(preview)
-            .then(previewDataURI => this.setState({ src: previewDataURI, blur: 10 }))
+            .then(previewDataURI => this.setState({ src: previewDataURI, blur: maxBlur as number }))
             .then(() => this.fetch(src))
             .then(srcDataURI => this.setState({ src: srcDataURI, blur: 0 }));
     }
@@ -54,7 +56,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     private cloneProps() {
         Object.keys(this.props)
-            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction", "backgroundImages", "children"].indexOf(prop) === -1)
+            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction", "backgroundImages", "maxBlur", "children"].indexOf(prop) === -1)
             .forEach(prop => this.clonedProps[prop] = this.props[prop]);
     }
 
