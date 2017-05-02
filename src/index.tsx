@@ -3,6 +3,7 @@ import * as React from "react";
 export interface ProgressiveImageProps {
     preview: string;
     src: string;
+    render: (src: string, style: {}) => JSX.Element;
     transitionTime?: number;
     timingFunction?: string;
     initialBlur?: number;
@@ -33,11 +34,8 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
 
     render() {
         const {src} = this.state;
-        const {children} = this.props;
-        if (!children || typeof children !== "function") {
-            throw new Error("ProgressiveImage requires a function as its only child");
-        }
-        return children(src, this.getStyle());
+        const {render} = this.props;
+        return render(src, this.getStyle());
     }
 
     private fetch(src: string): Promise<string> {
