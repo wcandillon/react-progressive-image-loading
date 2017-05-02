@@ -30,10 +30,10 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     componentWillMount() {
         const {src, preview, maxBlur} = this.props;
-        this.setState({ src: "", blur: maxBlur });
+        this.setState({ src: "", blur: maxBlur as number });
         this.cloneProps();
         this.fetch(preview)
-            .then(previewDataURI => this.setState({ src: previewDataURI, blur: maxBlur }))
+            .then(previewDataURI => this.setState({ src: previewDataURI, blur: maxBlur as number }))
             .then(() => this.fetch(src))
             .then(srcDataURI => this.setState({ src: srcDataURI, blur: 0 }));
     }
@@ -56,7 +56,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     private cloneProps() {
         Object.keys(this.props)
-            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction", "backgroundImages", "children"].indexOf(prop) === -1)
+            .filter(prop => ["style", "src", "preview", "background", "transitionTime", "timingFunction", "backgroundImages", "maxBlur", "children"].indexOf(prop) === -1)
             .forEach(prop => this.clonedProps[prop] = this.props[prop]);
     }
 
