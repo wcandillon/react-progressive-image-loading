@@ -15,17 +15,21 @@ $ npm install react-progressive-image-loading --save
 ## Usage
 
 ```jsx
-<ProgressiveImage preview="/images/tiny-preview.png" src="/images/preview.png">
-{(src, style) => <img src={src} style={style} />}
-</ProgressiveImage>
+<ProgressiveImage
+    preview="/images/tiny-preview.png"
+    src="/images/preview.png"
+    render={(src, style) => <img src={src} style={style} />}
+/>
 ```
 
 Instead of using the `img` tag, you can use `background-image` with a `div`.
 
 ```jsx
-<ProgressiveImage preview="/images/tiny-preview.png" src="/images/preview.png">
-{(src, style) => <div style={Object.assign(style, { backgroundImage: `url(${src})` })} />}
-</ProgressiveImage>
+<ProgressiveImage
+    preview="/images/tiny-preview.png"
+    src="/images/preview.png"
+    render={(src, style) => <div style={Object.assign(style, { backgroundImage: `url(${src})` })} />}
+/>
 ```
 
 You can also customize the transition time and the timing function used for that transition.
@@ -35,16 +39,7 @@ You can also customize the transition time and the timing function used for that
     preview="/images/tiny-preview.png"
     src="/images/preview.png"
     transitionTime={500}
-    transitionFunction="ease">
-{(src, style) => <img src={src} style={style} />}
-</ProgressiveImage>
-```
-
-In case of `background=true`, it is possible to add some layers on top of the background image, for instance:
-
-```jsx
-<ProgressiveImage
-  preview="/images/tiny-preview.png" src="/images/preview.png" background={true}
-  backgroundImages={["linear-gradient(to top, rgba(31,31,31,0.3), rgba(31,31,31,0.3))"]}
+    transitionFunction="ease"
+    render={(src, style) => <img src={src} style={style} />}
 />
 ```
