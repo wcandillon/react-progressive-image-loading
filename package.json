@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wcandillon/react-progressive-image.git"
+    "url": "git+https://github.com/wcandillon/react-progressive-image-loading.git"
   },
   "keywords": [
     "react",
@@ -28,9 +28,9 @@
   "author": "William Candillon",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/wcandillon/react-progressive-image/issues"
+    "url": "https://github.com/wcandillon/react-progressive-image-loading/issues"
   },
-  "homepage": "https://github.com/wcandillon/react-progressive-image#readme",
+  "homepage": "https://github.com/wcandillon/react-progressive-image-loading#readme",
   "devDependencies": {
     "@types/lodash": "^4.14.63",
     "@types/react": "^15.0.23",
