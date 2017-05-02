@@ -10,6 +10,7 @@ export interface ProgressiveImageProps {
     backgroundImages?: string[];
     transitionTime?: number;
     timingFunction?: string;
+    maxBlur?: number;
 }
 
 export interface ProgressiveImageState {
@@ -23,15 +24,16 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
 
     static defaultProps = {
         transitionTime: 500,
-        timingFunction: "ease"
+        timingFunction: "ease",
+        maxBlur: 10
     };
 
     componentWillMount() {
-        const {src, preview} = this.props;
-        this.setState({ src: "", blur: 10 });
+        const {src, preview, maxBlur} = this.props;
+        this.setState({ src: "", blur: maxBlur });
         this.cloneProps();
         this.fetch(preview)
-            .then(previewDataURI => this.setState({ src: previewDataURI, blur: 10 }))
+            .then(previewDataURI => this.setState({ src: previewDataURI, blur: maxBlur }))
             .then(() => this.fetch(src))
             .then(srcDataURI => this.setState({ src: srcDataURI, blur: 0 }));
     }
