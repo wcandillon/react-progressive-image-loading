@@ -33,3 +33,12 @@ You can also customize the transition time and the timing function used for that
                   transitionFunction="ease"
 />
 ```
+
+In case of `background=true`, it is possible to add some layers on top of the background image, for instance:
+
+```jsx
+<ProgressiveImage
+  preview="/images/tiny-preview.png" src="/images/preview.png" background={true}
+  backgroundImages={["linear-gradient(to top, rgba(31,31,31,0.3), rgba(31,31,31,0.3))"]}
+/>
+```
