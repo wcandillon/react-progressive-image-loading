@@ -24,6 +24,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
     componentWillMount() {
         const {src, preview} = this.props;
         const initialBlur = this.props.initialBlur as number;
+        this.setState({ src: "", blur: initialBlur });
         this.fetch(preview)
             .then(previewDataURI => this.setState({ src: previewDataURI, blur: initialBlur }))
             .then(() => this.fetch(src))
