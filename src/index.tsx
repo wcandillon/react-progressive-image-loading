@@ -37,7 +37,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
     render() {
         const {src, style, background} = this.props;
         return background ?
-            <div style={Object.assign(this.getBackgroundStyle(), style)} {...this.clonedProps} />
+            <div style={Object.assign(this.getBackgroundStyle(), style)} {...this.clonedProps}>{this.props.children}</div>
             :
             <img src={src} style={Object.assign(this.getStyle(), style)} {...this.clonedProps} />
             ;
