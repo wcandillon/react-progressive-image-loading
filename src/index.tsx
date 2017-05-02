@@ -71,7 +71,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps & Di
         const {src} = this.state;
         const {backgroundImages} = this.props;
         const style = {
-            backgroundImage: `${backgroundImages ? `${backgroundImages.join(",")},`: ""}url(${src})`
+            backgroundImage: `${backgroundImages ? `${backgroundImages.join(",")},` : ""}url(${src})`
         };
         return Object.assign(style, this.getStyle());
     }
