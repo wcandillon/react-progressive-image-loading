@@ -5,7 +5,7 @@ export interface ProgressiveImageProps {
     src: string;
     transitionTime?: number;
     timingFunction?: string;
-    initialBlur: number;
+    initialBlur?: number;
 }
 
 export interface ProgressiveImageState {
