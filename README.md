@@ -15,7 +15,7 @@ $ npm install react-progressive-image-loading --save
 ## Usage
 
 ```jsx
-import {ProgressiveImage} from "react-progressive-image-loading";
+import ProgressiveImage from "react-progressive-image-loading";
 ```
 
 ```jsx
