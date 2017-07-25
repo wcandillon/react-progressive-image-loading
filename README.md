@@ -15,6 +15,10 @@ $ npm install react-progressive-image-loading --save
 ## Usage
 
 ```jsx
+import {ProgressiveImage} from "react-progressive-image-loading";
+```
+
+```jsx
 <ProgressiveImage
     preview="/images/tiny-preview.png"
     src="/images/preview.png"
