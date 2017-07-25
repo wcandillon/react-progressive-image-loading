@@ -22,7 +22,8 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
         initialBlur: 10
     };
 
-    componentWillMount() {
+    constructor(props: ProgressiveImageProps) {
+        super(props);
         const {src, preview} = this.props;
         const initialBlur = this.props.initialBlur as number;
         this.setState({ src: "", blur: initialBlur });
