@@ -56,3 +56,5 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
         };
     }
 }
+
+export default ProgressiveImage;
