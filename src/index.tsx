@@ -22,7 +22,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
         initialBlur: 10
     };
 
-    constructor(props) {
+    constructor(props: ProgressiveImageProps) {
         super(props);
         const {src, preview} = this.props;
         const initialBlur = this.props.initialBlur as number;
