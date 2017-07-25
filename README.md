@@ -12,11 +12,13 @@ Progressively load images using a blur effect.
 $ npm install react-progressive-image-loading --save
 ```
 
-## Usage
+## Import
 
 ```jsx
 import ProgressiveImage from "react-progressive-image-loading";
 ```
+
+## Usage
 
 ```jsx
 <ProgressiveImage
