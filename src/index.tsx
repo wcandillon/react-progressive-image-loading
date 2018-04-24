@@ -22,14 +22,18 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
         initialBlur: 10
     };
 
+    unmounted = false;
+
     componentWillMount() {
         const {src, preview} = this.props;
         const initialBlur = this.props.initialBlur as number;
-        this.setState({ src: "", blur: initialBlur });
-        this.fetch(preview)
-            .then(previewDataURI => this.setState({ src: previewDataURI, blur: initialBlur }))
-            .then(() => this.fetch(src))
-            .then(srcDataURI => this.setState({ src: srcDataURI, blur: 0 }));
+        this.setState({ src: preview, blur: initialBlur });
+        this.fetch(src)
+            .then(srcDataURI => !this.unmounted && this.setState({ src: srcDataURI, blur: 0 }));
+    }
+
+    componentWillUnMount() {
+        this.unmounted = true;
     }
 
     render() {
