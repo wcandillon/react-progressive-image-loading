@@ -32,7 +32,7 @@ export class ProgressiveImage extends React.Component<ProgressiveImageProps, Pro
             .then(srcDataURI => !this.unmounted && this.setState({ src: srcDataURI, blur: 0 }));
     }
 
-    componentWillUnMount() {
+    componentWillUnmount() {
         this.unmounted = true;
     }
 
