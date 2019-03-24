@@ -1,6 +1,6 @@
 {
   "name": "react-progressive-image-loading",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Progressively load images using a blur effect. Edit",
   "main": "build/index.js",
   "typings": "build/index.d.ts",
